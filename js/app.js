@@ -3,6 +3,8 @@
  */
 let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
 let clickerCount = 0;
+let openList = [];
+
 
 /*
  * Display the cards on the page
@@ -69,19 +71,56 @@ function shuffle(array) {
 
 //Clear the current board for new deck shuffle on refresh icon click
 function refreshBoard(){
-    let deck = document.getElementsByClassName("deck")[0];
-    while (deck.firstChild) {
-        deck.removeChild(deck.firstChild);
-    }
-    displayCards();
+    
+    location.reload();
 }
 
 function toggleCard(card){
+    //increment the clickerCount for moves
+    incrementClicker();
+ 
+    //open the card by toggling the class names 
     card.classList.toggle("open");
     card.classList.toggle("show");
 
-    clickerCount ++;
+    compareList(card);
 }
+
+//increment the clickerCount for moves
+function incrementClicker(){
+    clickerCount ++;
+    document.getElementsByClassName("moves")[0].innerHTML = clickerCount;
+    
+    if (clickerCount === 15 || clickerCount === 25 ){
+        var star = document.getElementsByClassName("fa-star")[0];
+        star.parentNode.removeChild(star);
+    }
+
+}
+
+function compareList(card){
+    //check if there is another open card
+    //if there is not another open card, increment the counter
+    if (openList.length < 1){
+        openList[0] = card;
+    }
+    //else if there is a card in openList, compare the two cards
+    else{
+        openList[1] = card;
+        // if the cards symbol are the same, toggle to match and empty openList
+        if (openList[0].innerHTML == openList[1].innerHTML){
+
+        }
+        //if the cards are not the same, flip them both back over and empty openList
+        else{
+            card.classList.toggle("open");
+            card.classList.toggle("show");
+        }
+        
+    }
+}
+
+
 
 /*****
  * 
@@ -99,11 +138,6 @@ let refresh = document.getElementsByClassName("restart")[0];
 refresh.addEventListener("click", function() {
     refreshBoard();
   });
-
-
-
-
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
