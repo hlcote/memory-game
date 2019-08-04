@@ -2,6 +2,7 @@
  * Create a list that holds all of your cards
  */
 let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
+let clickerCount = 0;
 
 /*
  * Display the cards on the page
@@ -10,17 +11,45 @@ let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bol
  *   - add each card's HTML to the page
  */
 
-function myFunction() {
-    deck = document.getElementsByClassName("deck")[0];
-    card = document.createElement("li");
-    card.innerHTML = "&#xf1b2";
-    card.className = "card open show fa";
-    deck.appendChild(card);
+function displayCards() {
 
-/*
-    list = document.getElementsByClassName("deck")[0];
-    removeMe = document.getElementsByClassName("card")[2];
-    list.removeChild(removeMe);*/
+    /* shuffle the array*/
+    shuffle(cardList);
+
+    for(var i = 0; i < cardList.length; i++){
+        let deck = document.getElementsByClassName("deck")[0];
+        let card = document.createElement("li");
+        
+        //insert font awesome unicode to match the symbol in cardList
+        if (cardList[i] == 'diamond')
+        card.innerHTML = "&#xf219";
+        else if (cardList[i] == 'plane')
+        card.innerHTML = "&#xf1d8";
+        else if (cardList[i] == 'anchor')
+        card.innerHTML = "&#xf13d";
+        else if (cardList[i] == 'bolt')
+        card.innerHTML = "&#xf0e7";
+        else if (cardList[i] == 'cube')
+        card.innerHTML = "&#xf1b2";
+        else if (cardList[i] == 'leaf')
+        card.innerHTML = "&#xf06c";
+        else if (cardList[i] == 'bicycle')
+        card.innerHTML = "&#xf206";
+        else if (cardList[i] == 'bomb')
+        card.innerHTML = "&#xf1e2";
+        else
+        card.innerHTML = "&#xf128";
+
+        card.className = "card fa";
+
+        //add event listener to each card as it is created
+        card.addEventListener("click", function() {
+            toggleCard(card);
+        });
+
+        //add card to deck to be displayed
+        deck.appendChild(card);
+    }
   }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -37,6 +66,44 @@ function shuffle(array) {
 
     return array;
 }
+
+//Clear the current board for new deck shuffle on refresh icon click
+function refreshBoard(){
+    let deck = document.getElementsByClassName("deck")[0];
+    while (deck.firstChild) {
+        deck.removeChild(deck.firstChild);
+    }
+    displayCards();
+}
+
+function toggleCard(card){
+    card.classList.toggle("open");
+    card.classList.toggle("show");
+
+    clickerCount ++;
+}
+
+/*****
+ * 
+ * Event Listeners
+ * 
+ ****/
+
+//On page load shuffle and display cards 
+document.addEventListener("DOMContentLoaded", function() {
+    displayCards();
+  });
+
+//On restart clicked reset and shuffle cards
+let refresh = document.getElementsByClassName("restart")[0];
+refresh.addEventListener("click", function() {
+    refreshBoard();
+  });
+
+
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
