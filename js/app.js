@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
 
 /*
  * Display the cards on the page
@@ -9,6 +9,19 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+function myFunction() {
+    deck = document.getElementsByClassName("deck")[0];
+    card = document.createElement("li");
+    card.innerHTML = "&#xf1b2";
+    card.className = "card open show fa";
+    deck.appendChild(card);
+
+/*
+    list = document.getElementsByClassName("deck")[0];
+    removeMe = document.getElementsByClassName("card")[2];
+    list.removeChild(removeMe);*/
+  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -24,7 +37,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
