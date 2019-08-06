@@ -90,6 +90,14 @@ h1 {
  * Styles for the Score Panel
  */
 
+ .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    justify-content: space-around;
+  }
+
 .score-panel {
     text-align: left;
     width: 345px;
@@ -108,7 +116,11 @@ h1 {
     display: inline-block;
 }
 
+.score-panel .stopwatch {
+    margin: 0;
+    padding: 0;
+}
+
 .score-panel .restart {
-    float: right;
     cursor: pointer;
 }

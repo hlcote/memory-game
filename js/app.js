@@ -18,6 +18,8 @@ function displayCards() {
     /* shuffle the array*/
     shuffle(cardList);
 
+    startTimer();
+
     for(var i = 0; i < cardList.length; i++){
         let deck = document.getElementsByClassName("deck")[0];
         let card = document.createElement("li");
@@ -113,7 +115,6 @@ function incrementClicker(){
         var star = document.getElementsByClassName("fa-star")[0];
         star.parentNode.removeChild(star);
     }
-
 }
 
 function compareList(card){
@@ -133,8 +134,7 @@ function compareList(card){
         for(var i = 0; i < nonMatches.length; i++){
             nonMatches[i].classList.remove("open");
             nonMatches[i].classList.remove("show");
-        }
-            
+        } 
     }
 
     //enable cards to be clicked again
@@ -160,6 +160,25 @@ function enableCards(){
 
 /*****
  * 
+ * Game Timer
+ * 
+ ****/
+var sec = 0, min = 0;
+var timer = document.querySelector(".stopwatch");
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        stopwatch.innerHTML = min+" mins "+sec+" secs";
+        sec++;
+        if(sec == 60){
+            min++;
+            sec = 0;
+        }
+    },1000);
+}
+
+/*****
+ * 
  * Event Listeners
  * 
  ****/
@@ -167,6 +186,10 @@ function enableCards(){
 //On page load shuffle and display cards 
 document.addEventListener("DOMContentLoaded", function() {
     displayCards();
+  });
+
+document.addEventListener("DOMContentLoaded", function() {
+    startGameTimer();
   });
 
 //On restart clicked reset and shuffle cards
