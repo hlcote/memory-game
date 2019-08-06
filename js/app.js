@@ -83,7 +83,24 @@ function toggleCard(card){
     card.classList.toggle("open");
     card.classList.toggle("show");
 
-    compareList(card);
+
+    //check if there is another open card
+    if (openList.length < 1){
+        // if openList is empty add clicked card
+        openList[0] = card;
+    }
+
+    else{
+
+    //disable other cards from being clicked while cards are compared
+    disableCards();
+    
+    //start a timer to delay compare so viewer can see cards
+    var delayInMilliseconds = 1500; //1.5 seconds
+    setTimeout(function() {
+        compareList(card);
+        }, delayInMilliseconds);
+    }   
 }
 
 //increment the clickerCount for moves
@@ -91,7 +108,8 @@ function incrementClicker(){
     clickerCount ++;
     document.getElementsByClassName("moves")[0].innerHTML = clickerCount;
     
-    if (clickerCount === 15 || clickerCount === 25 ){
+    //decrement the star count based on number of moves
+    if (clickerCount === 25 || clickerCount === 50 ){
         var star = document.getElementsByClassName("fa-star")[0];
         star.parentNode.removeChild(star);
     }
@@ -99,28 +117,46 @@ function incrementClicker(){
 }
 
 function compareList(card){
-    //check if there is another open card
-    //if there is not another open card, increment the counter
-    if (openList.length < 1){
-        openList[0] = card;
+    //add 2nd clicked card
+    openList[1] = card;
+    // if the cards symbol are the same, toggle to match and empty openList
+    if (openList[0].innerHTML == openList[1].innerHTML){
+        var matches = document.querySelectorAll(".open");
+        for(var i = 0; i < matches.length; i++){
+            matches[i].classList.remove("open");
+            matches[i].classList.add("match");
+        }
     }
-    //else if there is a card in openList, compare the two cards
+    //if the cards are not the same, flip them both back over and empty openList
     else{
-        openList[1] = card;
-        // if the cards symbol are the same, toggle to match and empty openList
-        if (openList[0].innerHTML == openList[1].innerHTML){
+        var nonMatches = document.querySelectorAll(".open");
+        for(var i = 0; i < nonMatches.length; i++){
+            nonMatches[i].classList.remove("open");
+            nonMatches[i].classList.remove("show");
+        }
+            
+    }
 
-        }
-        //if the cards are not the same, flip them both back over and empty openList
-        else{
-            card.classList.toggle("open");
-            card.classList.toggle("show");
-        }
-        
+    //enable cards to be clicked again
+    enableCards();
+
+    //clear the stored cards from openList
+    openList = [];  
+}
+
+function disableCards(){
+    var inactive = document.querySelectorAll(".card");
+    for(var i = 0; i < inactive.length; i++){
+        inactive[i].classList.add("disabled");
     }
 }
 
-
+function enableCards(){
+    var active = document.querySelectorAll(".card");
+    for(var i = 0; i < active.length; i++){
+        active[i].classList.remove("disabled");
+    }
+}
 
 /*****
  * 
@@ -139,13 +175,3 @@ refresh.addEventListener("click", function() {
     refreshBoard();
   });
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
