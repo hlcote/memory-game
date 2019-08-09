@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: auto;
 }
 
 h1 {
@@ -51,10 +52,9 @@ p {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 85%;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
@@ -65,8 +65,9 @@ p {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 3.7rem;
+    width: 3.7rem;
+    margin: 0.2rem 0.2rem;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -176,5 +177,67 @@ p {
   }
 
   #starRating li {
-	display: inline-block;
+    display: inline-block;
+}
+
+/* Smaller screens and phones
+****************/
+@media (min-width: 425px) {
+	.container {
+		font-size: 16px;
+	}
+
+	.deck {
+		width: 330px;
+		height: 340px;
+	}
+
+	.deck .card {
+		height: 62px;
+		width: 62px;
+	}
+
+    .modal-content {
+        width: 80%;
+      }
+}
+
+/*Larger screens
+****************/
+@media (min-width: 425px) {
+	.container {
+		font-size: 16px;
+	}
+
+	.deck {
+		width: 330px;
+		height: 340px;
+	}
+
+	.deck .card {
+		height: 62px;
+		width: 62px;
+	}
+
+    .modal-content {
+        width: 80%;
+      }
+}
+
+/* For Tablets and larger screens
+****************/
+@media (min-width: 768px) {
+	.container {
+		font-size: 22px;
+	}
+
+	.deck {
+		width: 660px;
+		height: 680px;
+	}
+
+	.deck .card {
+		height: 125px;
+		width: 125px;
+	}
 }

@@ -1,0 +1,9 @@
+.deck {
+    width: 300px;
+    min-height: 300px;
+}
+
+.deck .card {
+    height: 50px;
+    width: 50px;
+}
