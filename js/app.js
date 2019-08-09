@@ -3,6 +3,7 @@
  */
 let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle", "bicycle", "bomb", "bomb"]
 let clickerCount = 0;
+let matched = 0;
 let openList = [];
 
 
@@ -17,8 +18,6 @@ function displayCards() {
 
     /* shuffle the array*/
     shuffle(cardList);
-
-    startTimer();
 
     for(var i = 0; i < cardList.length; i++){
         let deck = document.getElementsByClassName("deck")[0];
@@ -93,21 +92,25 @@ function toggleCard(card){
     }
 
     else{
-
     //disable other cards from being clicked while cards are compared
     disableCards();
     
     //start a timer to delay compare so viewer can see cards
-    var delayInMilliseconds = 1500; //1.5 seconds
+    var delayInMilliseconds = 1000; //1 second
     setTimeout(function() {
-        compareList(card);
-        }, delayInMilliseconds);
+        compareList(card);}, delayInMilliseconds);
     }   
 }
 
 //increment the clickerCount for moves
 function incrementClicker(){
     clickerCount ++;
+
+    //on first move start timer
+    if (clickerCount == 1){
+    startTimer();
+    }
+    
     document.getElementsByClassName("moves")[0].innerHTML = clickerCount;
     
     //decrement the star count based on number of moves
@@ -124,9 +127,13 @@ function compareList(card){
     if (openList[0].innerHTML == openList[1].innerHTML){
         var matches = document.querySelectorAll(".open");
         for(var i = 0; i < matches.length; i++){
+            matched = matched + 1;
             matches[i].classList.remove("open");
             matches[i].classList.add("match");
         }
+        }
+        if (matched == 16){
+            congrats();
     }
     //if the cards are not the same, flip them both back over and empty openList
     else{
@@ -179,6 +186,23 @@ function startTimer(){
 
 /*****
  * 
+ * Game won modal script
+ * 
+ ****/
+function congrats(){
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+
+    // close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+}
+/*****
+ * 
  * Event Listeners
  * 
  ****/
@@ -186,15 +210,18 @@ function startTimer(){
 //On page load shuffle and display cards 
 document.addEventListener("DOMContentLoaded", function() {
     displayCards();
-  });
-
-document.addEventListener("DOMContentLoaded", function() {
-    startGameTimer();
-  });
+});
 
 //On restart clicked reset and shuffle cards
 let refresh = document.getElementsByClassName("restart")[0];
 refresh.addEventListener("click", function() {
     refreshBoard();
-  });
+});
+
+//On playagain button clicked reset the board
+let playAgain = document.getElementById("replay");
+playAgain.addEventListener("click", function() {
+    refreshBoard();
+});
+
 
