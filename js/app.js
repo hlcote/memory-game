@@ -5,6 +5,8 @@ let cardList = ["diamond", "diamond", "plane", "plane", "anchor", "anchor", "bol
 let clickerCount = 0;
 let matched = 0;
 let openList = [];
+let runTimer = true;
+let numStars = 3;
 
 
 /*
@@ -77,9 +79,6 @@ function refreshBoard(){
 }
 
 function toggleCard(card){
-    //increment the clickerCount for moves
-    incrementClicker();
- 
     //open the card by toggling the class names 
     card.classList.toggle("open");
     card.classList.toggle("show");
@@ -92,6 +91,9 @@ function toggleCard(card){
     }
 
     else{
+    //increment the clickerCount for moves
+    incrementClicker();
+ 
     //disable other cards from being clicked while cards are compared
     disableCards();
     
@@ -117,6 +119,7 @@ function incrementClicker(){
     if (clickerCount === 25 || clickerCount === 50 ){
         var star = document.getElementsByClassName("fa-star")[0];
         star.parentNode.removeChild(star);
+        numStars --;
     }
 }
 
@@ -134,6 +137,7 @@ function compareList(card){
         }
         if (matched == 16){
             congrats();
+            stopTimer();
     }
     //if the cards are not the same, flip them both back over and empty openList
     else{
@@ -170,18 +174,23 @@ function enableCards(){
  * Game Timer
  * 
  ****/
-var sec = 0, min = 0;
-var timer = document.querySelector(".stopwatch");
-var interval;
+let sec = 0, min = 0;
 function startTimer(){
-    interval = setInterval(function(){
+    let interval = setInterval(function(){
         stopwatch.innerHTML = min+" mins "+sec+" secs";
-        sec++;
-        if(sec == 60){
-            min++;
-            sec = 0;
-        }
+        if(runTimer == true){
+            sec++;
+            if(sec == 60){
+                min++;
+                sec = 0;
+            }
+        }    
     },1000);
+}
+
+function stopTimer(){
+    runTimer = false;
+    stopwatch.innerHTML = min+" mins "+sec+" secs";
 }
 
 /*****
@@ -196,10 +205,19 @@ function congrats(){
 
     modal.style.display = "block";
 
+    // declare star rating variable
+    var starRating = document.querySelector(".stars").innerHTML;
+
+    document.getElementById("finalMove").innerHTML = clickerCount;
+    document.getElementById("finalTime").innerHTML = min+" mins "+sec+" secs";
+    document.getElementById("starRating").innerHTML = starRating;
+
     // close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
+
+    //add the scores to the score report
 }
 /*****
  * 
