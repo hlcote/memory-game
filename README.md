@@ -2,7 +2,7 @@
 ____
 This is a project for Udacity's Front End Developer Degree to demonstrate skills learned in Javascript.
 
-![Blank Game Board]('../img/gameboard.jpg')
+![Blank Game Board]('https://raw.githubusercontent.com/hsprauer/memory-game/master/img/gameboard.JPG')
 
 # Game Play Instructions
 ____
