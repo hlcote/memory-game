@@ -2,18 +2,11 @@
 ____
 This is a project for Udacity's Front End Developer Degree to demonstrate skills learned in Javascript.
 
-![Blank Game Board]('https://raw.githubusercontent.com/hsprauer/memory-game/master/img/gameboard.JPG')
-
 # Game Play Instructions
 ____
 1. Click on a card 
 2. Continue to open cards to find each matching pair
-
-![Matched Game Board]('../img/matchboard.jpg')
-
 3. Try to find the matches as fast as you can!
-
-![Game won!]('../img/winboard.jpg')
 
 # Tasks
 ____
