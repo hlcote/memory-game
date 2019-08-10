@@ -1,20 +1,33 @@
 # Memory Game Project
+____
+This is a project for Udacity's Front End Developer Degree to demonstrate skills learned in Javascript.
 
-## Table of Contents
+![Blank Game Board]('../img/gameboard.jpg')
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+# Game Play Instructions
+____
+1. Click on a card 
+2. Continue to open cards to find each matching pair
 
-## Instructions
+![Matched Game Board]('../img/matchboard.jpg')
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+3. Try to find the matches as fast as you can!
 
-To get started, open `js/app.js` and start building out the app's functionality
+![Game won!]('../img/winboard.jpg')
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+# Tasks
+____
+1. Flipping cards
+2. What happens when cards match
+3. What happens when cards do not match
+4. When the game finishes
+5. Responsive design for all screen sizes
 
-## Contributing
+# Method
+____
+Vanilla Javascript, HTML5, CSS
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+#Credits
+____
+1. Udacity skeleton template for program https://github.com/udacity/fend-project-memory-game
+2. Shuffle cards feature from http://stackoverflow.com/a/2450976
