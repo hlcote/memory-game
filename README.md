@@ -27,7 +27,7 @@ ____
 ____
 Vanilla Javascript, HTML5, CSS
 
-#Credits
+# Credits
 ____
 1. Udacity skeleton template for program https://github.com/udacity/fend-project-memory-game
 2. Shuffle cards feature from http://stackoverflow.com/a/2450976
