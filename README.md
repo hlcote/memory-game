@@ -2,11 +2,18 @@
 ____
 This is a project for Udacity's Front End Developer Degree to demonstrate skills learned in Javascript.
 
+![gameboard](https://user-images.githubusercontent.com/28868247/62816156-14c74880-baf1-11e9-92e7-03c9a440b76e.JPG)
+
 # Game Play Instructions
 ____
 1. Click on a card 
 2. Continue to open cards to find each matching pair
+
+![matchboard](https://user-images.githubusercontent.com/28868247/62816160-16910c00-baf1-11e9-8c5c-3d4c4ba10f9f.JPG)
+
 3. Try to find the matches as fast as you can!
+
+![winboard](https://user-images.githubusercontent.com/28868247/62816161-185acf80-baf1-11e9-887e-0684edc529fd.JPG)
 
 # Tasks
 ____
